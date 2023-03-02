@@ -12,7 +12,13 @@ HTML page with those records.
 // Display only the album whose title matches the given title.
 const formInputEvent = (title) => {
     console.log(title)
-    let records = allRecords
+    let records = allRecords.filter(record => {
+        return record.title.toUpperCase().includes(title.toUpperCase()) || 
+               record.artist.toUpperCase().includes(title.toUpperCase()) || 
+               record.year === title ||
+               record.genres.find(genre => genre.toUpperCase().includes(title.toUpperCase()))
+
+    })
     recordStoreHtmlMethods.fillRecordContainer(records);
 }
 
